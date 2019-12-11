@@ -1,7 +1,10 @@
-﻿using System;
+﻿using ManagerCafe.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +18,15 @@ namespace ManagerCafe
 		public fAdmin()
 		{
 			InitializeComponent();
+            LoadAcount();
 		}
+        void LoadAcount()
+        {
+            string query = "exec usp_GetByUserName @userName";
+            DataProvider dataProvider =new DataProvider();
+            var objectParam = new Object[] { "K9","Staff" };
+            dtgvAcount.DataSource = dataProvider.ExecuteQuery(query, objectParam);
+        }
 
 		private void label1_Click(object sender,EventArgs e)
 		{
