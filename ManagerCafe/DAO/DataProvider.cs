@@ -5,8 +5,16 @@ namespace ManagerCafe.DAO
 {
     public class DataProvider
     {
+
+        private static DataProvider instance;
         public string connectStr = "Data Source=.\\SQLEXPRESS;Initial Catalog=QuanLyQuanCafe;User ID=sa;Password=123";
 
+        public static DataProvider Instance
+        {
+            get { if (instance == null) instance = new DataProvider(); return DataProvider.instance; }
+            private set { DataProvider.instance = value; }
+        }
+        private  DataProvider(){}
         public DataTable ExecuteQuery(string query,object[] param=null)
         {
             DataTable dataTable = new DataTable();

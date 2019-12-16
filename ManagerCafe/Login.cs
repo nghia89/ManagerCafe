@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagerCafe.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,12 +41,27 @@ namespace ManagerCafe
 			}
 		}
 
+         bool login(string userName,string passWord)
+        {
+            var isCheck= AccountDAO.Instance.Login(userName, passWord);
+            return isCheck;
+        }
+
 		private void btnLogin_Click(object sender,EventArgs e)
 		{
-			fTableManager fTableManager = new fTableManager();
-			this.Hide();
-			fTableManager.ShowDialog();
-			this.Show();
+            string userName = txbUsername.Text;
+            string passWord = txbPass.Text;
+            if(login(userName, passWord))
+            {
+                fTableManager fTableManager = new fTableManager();
+                this.Hide();
+                fTableManager.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Sai tên tài khaorn hoặc mật khẩu hoặc.! ");
+            }	
 		}
 	}
 }

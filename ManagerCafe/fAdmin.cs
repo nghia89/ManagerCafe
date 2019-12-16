@@ -23,10 +23,10 @@ namespace ManagerCafe
         void LoadAcount()
         {
             string query = "exec usp_GetByUserName @userName";
-            DataProvider dataProvider =new DataProvider();
             var objectParam = new Object[] { "K9","Staff" };
-            dtgvAcount.DataSource = dataProvider.ExecuteQuery(query, objectParam);
+            dtgvAcount.DataSource = DataProvider.Instance.ExecuteQuery(query, objectParam);
         }
+
 
 		private void label1_Click(object sender,EventArgs e)
 		{
