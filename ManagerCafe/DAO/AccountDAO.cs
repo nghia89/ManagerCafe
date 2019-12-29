@@ -19,8 +19,8 @@ namespace ManagerCafe.DAO
 
         public bool Login(string userName, string passWord)
         {
-            string query = "select * from Account where UserName=N'K9' and PassWord=N'1'";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            string query = "usp_login @userName , @passWord";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query,new object[] { userName, passWord });
             if (data.Rows.Count > 0)
             {
                 return true;

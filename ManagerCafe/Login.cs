@@ -60,7 +60,7 @@ namespace ManagerCafe
             }
             else
             {
-                MessageBox.Show("Sai tên tài khaorn hoặc mật khẩu hoặc.! ");
+                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu hoặc.! ");
             }	
 		}
 	}

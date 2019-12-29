@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ManagerCafe.DAO;
+using ManagerCafe.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +17,30 @@ namespace ManagerCafe
 		public fTableManager()
 		{
 			InitializeComponent();
-		}
+            LoadTable();
+
+        }
+
+        void LoadTable()
+        {
+            List<Table> tableList = TableDAO.Instance.LoadTableList();
+            foreach (Table item in tableList)
+            {
+                Button btn = new Button() {Width=TableDAO.TableWidth, Height=TableDAO.TableHeight};
+                btn.Text = item.Name +'\n'+item.Status;
+                if (item.Status=="Trống")
+                {
+                    btn.BackColor = Color.Red;
+                }
+                else
+                {
+
+                    btn.BackColor = Color.Blue;
+                }
+                flpTable.Controls.Add(btn);
+            }
+
+        }
 
 		private void đăngXuấtToolStripMenuItem_Click(object sender,EventArgs e)
 		{
